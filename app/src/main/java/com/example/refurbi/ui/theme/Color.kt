@@ -1,11 +1,42 @@
 package com.example.refurbi.ui.theme
 
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+// Custom color definitions
+val Blue200 = Color(0xFF90CAF9)
+val Blue500 = Color(0xFF2196F3)
+val Blue700 = Color(0xFF1976D2)
+val Teal200 = Color(0xFF03DAC5)
+val Gray200 = Color(0xFFEEEEEE)
+val Gray500 = Color(0xFF9E9E9E)
+val Gray700 = Color(0xFF616161)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+// Light color scheme
+val LightColorScheme = lightColorScheme(
+    primary = Blue500,
+    onPrimary = Color.White,
+    primaryContainer = Blue700,
+    onPrimaryContainer = Color.White,
+    secondary = Teal200,
+    onSecondary = Color.Black,
+    background = Gray200,
+    onBackground = Color.Black,
+    surface = Color.White,
+    onSurface = Color.Black
+)
+
+// Dark color scheme
+val DarkColorScheme = darkColorScheme(
+    primary = Blue200,
+    onPrimary = Color.Black,
+    primaryContainer = Blue700,
+    onPrimaryContainer = Color.White,
+    secondary = Teal200,
+    onSecondary = Color.Black,
+    background = Gray700,
+    onBackground = Color.White,
+    surface = Gray500,
+    onSurface = Color.White
+)

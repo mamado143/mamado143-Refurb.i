@@ -1,60 +1,55 @@
 package com.example.refurbi.ui.screens
 
-
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Card
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.refurbi.data.model.Product
+import com.example.refurbi.ui.components.AppTopBar
+import com.example.refurbi.ui.components.AppBottomBar
 import com.example.refurbi.navigation.Screen
 import com.example.refurbi.viewmodel.ProductViewModel
 
 @Composable
 fun ProductCatalogScreen(
     navController: NavController,
-    viewModel: ProductViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    productViewModel: ProductViewModel = viewModel()
 ) {
-    val productList = viewModel.productList.collectAsState()
+    var searchQuery by remember { mutableStateOf("") }
+    val productList by productViewModel.productList.collectAsState()
+    val filteredProducts = productList.filter {
+        it.name.contains(searchQuery, ignoreCase = true) ||
+                it.description.contains(searchQuery, ignoreCase = true)
+    }
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Product Catalog") }) }
+        topBar = { AppTopBar(title = "Catalog") },
+        bottomBar = { AppBottomBar(navController) }
     ) { paddingValues ->
-        LazyColumn(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
+                .padding(16.dp)
         ) {
-            items(productList.value) { product ->
-                ProductItem(product = product, onClick = {
-                    navController.navigate("${Screen.ProductDetails.route}/${product.id}")
-                })
+            OutlinedTextField(
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                label = { Text("Search Products") },
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            LazyColumn {
+                items(filteredProducts) { product ->
+                    ProductItem(product = product, onClick = {
+                        navController.navigate("${Screen.ProductDetails.route}/${product.id}")
+                    })
+                }
             }
-        }
-    }
-}
-
-@Composable
-fun ProductItem(product: Product, onClick: () -> Unit) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-            .clickable { onClick() },
-        elevation = 4.dp
-    ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(product.name)
-            Spacer(modifier = Modifier.height(4.dp))
-            Text("Price: \$${product.price}")
         }
     }
 }

@@ -1,4 +1,3 @@
-// File: LoginScreen.kt
 package com.example.refurbi.ui.screens
 
 import androidx.compose.foundation.layout.*
@@ -6,6 +5,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,14 +18,17 @@ import com.example.refurbi.navigation.Screen
 import com.example.refurbi.ui.components.AppTopBar
 import com.example.refurbi.ui.components.BottomBarScreen
 import com.example.refurbi.viewmodel.AuthViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(navController: NavController, authViewModel: AuthViewModel = viewModel()) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var errorMessage by remember { mutableStateOf("") }
+    val scaffoldState = rememberScaffoldState()  // For Snackbar
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
+        scaffoldState = scaffoldState,
         topBar = { AppTopBar(title = "Login") }
     ) { paddingValues ->
         Box(
@@ -40,9 +43,7 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel = vie
                     .padding(16.dp),
                 elevation = 8.dp
             ) {
-                Column(
-                    modifier = Modifier.padding(16.dp)
-                ) {
+                Column(modifier = Modifier.padding(16.dp)) {
                     Text(text = "Welcome Back!", style = MaterialTheme.typography.h5)
                     Spacer(modifier = Modifier.height(16.dp))
                     OutlinedTextField(
@@ -61,10 +62,6 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel = vie
                         visualTransformation = PasswordVisualTransformation(),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
                     )
-                    if (errorMessage.isNotEmpty()) {
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = errorMessage, color = MaterialTheme.colors.error)
-                    }
                     Spacer(modifier = Modifier.height(16.dp))
                     Button(
                         onClick = {
@@ -73,11 +70,15 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel = vie
                                 if (role == "admin") {
                                     navController.navigate(Screen.AdminPanel.route)
                                 } else {
-                                    // Navigate to the home screen (which uses the bottom nav)
                                     navController.navigate(BottomBarScreen.Home.route)
                                 }
                             } else {
-                                errorMessage = "Invalid email or password"
+                                coroutineScope.launch {
+                                    scaffoldState.snackbarHostState.showSnackbar(
+                                        message = "Invalid email or password",
+                                        actionLabel = "Dismiss"
+                                    )
+                                }
                             }
                         },
                         modifier = Modifier.fillMaxWidth()
