@@ -22,6 +22,8 @@ fun NavGraph(startDestination: String = Screen.Home.route) {
             val productId = backStackEntry.arguments?.getInt("productId") ?: 0
             ProductDetailsScreen(productId, navController)
         }
+        composable(Screen.Profile.route) { ProfileScreen(navController) }
+
         composable(Screen.Cart.route) { CartScreen(navController) }
         composable(Screen.Checkout.route) { CheckoutScreen(navController) }
         composable(Screen.AdminPanel.route) { AdminPanelScreen(navController) }

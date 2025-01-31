@@ -1,3 +1,4 @@
+// File: ProductDetailsScreen.kt
 package com.example.refurbi.ui.screens
 
 import androidx.compose.foundation.layout.*
@@ -8,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.refurbi.ui.components.AppTopBar
 import com.example.refurbi.navigation.Screen
 import com.example.refurbi.viewmodel.CartViewModel
 import com.example.refurbi.viewmodel.ProductViewModel
@@ -20,9 +22,14 @@ fun ProductDetailsScreen(
     cartViewModel: CartViewModel = viewModel()
 ) {
     val product = productViewModel.getProductById(productId)
-
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Product Details") }) }
+        topBar = {
+            AppTopBar(
+                title = "Product Details",
+                showBackButton = true,
+                onBack = { navController.popBackStack() }
+            )
+        }
     ) { paddingValues ->
         product?.let {
             Column(
@@ -40,18 +47,15 @@ fun ProductDetailsScreen(
                 Button(
                     onClick = {
                         cartViewModel.addToCart(it)
-                        // Navigate to the Cart screen after adding the product
                         navController.navigate(Screen.Cart.route)
-                    }
+                    },
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Text("Add to Cart")
                 }
             }
         } ?: run {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text("Product not found.")
             }
         }
