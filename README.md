@@ -124,7 +124,7 @@ We welcome contributions! Follow these steps:
     
     bash
     
-    CopyEdit
+   
     
     `git checkout -b feature-new-feature`
     
@@ -132,7 +132,6 @@ We welcome contributions! Follow these steps:
     
     bash
     
-    CopyEdit
     
     `git commit -m "Add new feature"`
     
@@ -153,8 +152,8 @@ We welcome contributions! Follow these steps:
 For any questions or support, reach out:
 
 📧 Email: **midodahir123@gmail.com**  
-🐦 Twitter: [@yourhandle](https://x.com/mr_mohamed_Moh)  
-📌 GitHub: [your-username](https://github.com/mamado143)
+🐦 Twitter: [@mr-mohamed-dahir](https://x.com/mr_mohamed_Moh)  
+📌 GitHub: [@mr_mohamed_Moh](https://github.com/mamado143)
 
 ---
 
