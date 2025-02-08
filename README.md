@@ -152,9 +152,9 @@ We welcome contributions! Follow these steps:
 
 For any questions or support, reach out:
 
-📧 Email: **yourname@example.com**  
-🐦 Twitter: [@yourhandle](https://twitter.com/yourhandle)  
-📌 GitHub: [your-username](https://github.com/your-username)
+📧 Email: **midodahir123@gmail.com**  
+🐦 Twitter: [@yourhandle](https://x.com/mr_mohamed_Moh)  
+📌 GitHub: [your-username](https://github.com/mamado143)
 
 ---
 
