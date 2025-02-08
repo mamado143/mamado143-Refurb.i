@@ -11,9 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.refurbi.navigation.Screen
 import com.example.refurbi.ui.components.AppTopBar
 import com.example.refurbi.ui.components.BottomBarScreen
@@ -91,4 +93,22 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel = vie
             }
         }
     }
+}
+
+
+// Assuming you have these defined elsewhere in your project
+// import com.yourpackage.LoginScreen
+// import com.yourpackage.AuthViewModel
+
+@Preview(showBackground = true)
+@Composable
+private fun LoginScreenPreview() {
+    // Create a dummy NavController for the preview
+    val navController = rememberNavController()
+
+    // Create a dummy AuthViewModel for the preview
+    val authViewModel: AuthViewModel = viewModel()
+
+    // Now call your LoginScreen composable with the dummy parameters
+    LoginScreen(navController = navController, authViewModel = authViewModel)
 }

@@ -24,7 +24,7 @@ fun SplashScreen(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Text("Refurbi", style = MaterialTheme.typography.h2)
+            Text("Refurbish", style = MaterialTheme.typography.h2)
         }
     }
 }
