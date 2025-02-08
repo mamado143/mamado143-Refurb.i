@@ -50,8 +50,10 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.material.icons.core.android)
     ksp(libs.androidx.room.compiler) // Correct dependency
     implementation(libs.firebase.messaging.ktx)
+    implementation (libs.mpandroidchart)
 
     implementation(libs.androidx.navigation.compose)
     implementation(libs.ui)

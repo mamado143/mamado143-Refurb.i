@@ -1,9 +1,7 @@
 package com.example.refurbi.ui.screens
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -11,20 +9,21 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(
-    onSplashFinished: () -> Unit
-) {
-    // A simple effect that waits 2 seconds then calls onSplashFinished.
-    LaunchedEffect(key1 = true) {
-        delay(2000)
+fun SplashScreen(onSplashFinished: () -> Unit) {
+    LaunchedEffect(Unit) {
+        delay(2000) // Simulate loading time
         onSplashFinished()
     }
-    Surface(modifier = Modifier.fillMaxSize()) {
+
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.primary
+    ) {
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Text("Refurbish", style = MaterialTheme.typography.h2)
+            Text("Refurbi", style = MaterialTheme.typography.displayLarge, color = MaterialTheme.colorScheme.onPrimary)
         }
     }
 }

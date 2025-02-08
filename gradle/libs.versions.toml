@@ -12,6 +12,7 @@ activityCompose = "1.8.0"
 composeBom = "2024.04.01"
 lifecycleViewmodelCompose = "2.8.7"
 material = "1.7.7"
+mpandroidchart = "v3.1.0"
 navigationCompose = "2.8.6"
 roomCompiler = "2.6.1"
 roomKtx = "2.6.1"
@@ -20,6 +21,7 @@ stripeAndroid = "21.4.1"
 ui = "1.7.7"
 uiTooling = "1.7.7"
 uiToolingPreview = "1.7.7"
+materialIconsCoreAndroid = "1.6.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,10 +46,12 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchart" }
 stripe-android = { module = "com.stripe:stripe-android", version.ref = "stripeAndroid" }
 ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiTooling" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
+androidx-material-icons-core-android = { group = "androidx.compose.material", name = "material-icons-core-android", version.ref = "materialIconsCoreAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
